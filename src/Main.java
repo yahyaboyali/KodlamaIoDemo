@@ -1,8 +1,11 @@
+import bussiness.CategoryManager;
 import bussiness.CourseManager;
 import core.logger.DbLogger;
 import core.logger.Logger;
 import core.logger.MailLogger;
+import dataAccess.JdbcCategoryDao;
 import dataAccess.JdbcCourseDao;
+import entities.Category;
 import entities.Course;
 import entities.Teacher;
 
@@ -26,5 +29,13 @@ public class Main {
         for(Course c : courseListGet) {
             System.out.println(c.getName());
         }
+        CategoryManager categoryManager = new CategoryManager(new JdbcCategoryDao(),loggers);
+        Category category = new Category(1,"oop");
+        Category category1 = new Category(2,"backend");
+        Category category2 = new Category(3,"oop2");
+        List<Category> categories = new ArrayList<>();
+        categories.add(category);
+        categories.add(category1);
+        categoryManager.add(category2,categories);
     }
 }
